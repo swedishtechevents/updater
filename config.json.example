@@ -1,7 +1,8 @@
 {
   "owner": "owner",
   "fromRepo": "fetch issues from repo",
+  "fromLabels": [],
   "toRepo": "repo to update",
   "file": "file/to/update/on/toRepo.json",
-  "token": "token"
+  "token": "token",
 }

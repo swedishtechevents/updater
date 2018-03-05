@@ -30,8 +30,10 @@ octokit.authenticate({
 octokit.issues.getForRepo({
   owner: config.owner,
   repo: config.fromRepo,
+  labels: config.fromLabels || [],
   per_page: 100
 }).then(res => {
+  pino.info('Found ' + res.data.length + ' issues');
   pino.info('Updating events');
 
   // Filter events.
