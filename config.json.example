@@ -3,9 +3,9 @@
     "type": "token",
     "token": "token-value"
   },
-  "fromRepo": "fetch issues from repo",
+  "fromRepo": "fetch-issues-from-repo",
   "fromLabels": [],
   "file": "file/to/update/on/toRepo.json",
   "owner": "owner",
-  "toRepo": "repo to update"
+  "toRepo": "repo-to-update"
 }
