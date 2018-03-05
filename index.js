@@ -1,7 +1,6 @@
 const program = require('commander');
 const octokit = require('@octokit/rest')({ debug: false });
 const pino = require('pino')();
-const config = require('./config.json');
 
 // Create program.
 program
@@ -16,6 +15,7 @@ if (!program.config) {
 }
 
 // Custom modules.
+const config = require(program.config);
 const parser = require('./parser');
 const updateFile = require('./updater');
 const filterEvents = require('./events');
