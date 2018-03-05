@@ -10,9 +10,9 @@ const parser = (issue) => {
   let json = {};
 
   body.forEach(row => {
-    const parts = row.split(':');
-    const title = parts[0];
-    json[title.toLowerCase()] = parts.slice(1).join(':').trim();
+    const parts = row.split(/\:(.+)/);
+    const key = parts[0];
+    json[key.toLowerCase()] = parts.slice(1).join('').trim();
   });
 
   json.number = issue.number;
