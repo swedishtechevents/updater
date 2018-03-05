@@ -23,6 +23,13 @@ node index.js
 
 and it will fetch issues from a repository, parse the content and update the file on the specified repository.
 
+Example output:
+
+```
+{"level":30,"time":1520275235349,"msg":"Updating events","pid":45300,"hostname":"hostname.lan","v":1}
+{"level":30,"time":1520275237592,"msg":"Created file api/events.json","pid":45300,"hostname":"hostname.lan","v":1}
+```
+
 ## License
 
 MIT © [Fredrik Forsmo](https://github.com/frozzare)
