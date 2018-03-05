@@ -1,6 +1,6 @@
 # Updater
 
-The update cli for [swedishtechevents.com](https://swedishtechevents.com) events list. The issues content has to use this format: `key: value`
+CLI to update [swedishtechevents.com](https://swedishtechevents.com) events list. The issues content has to use this format: `key: value`
 
 Example:
 
