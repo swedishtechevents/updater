@@ -1,11 +1,11 @@
 {
-  "owner": "owner",
-  "fromRepo": "fetch issues from repo",
-  "fromLabels": [],
-  "toRepo": "repo to update",
-  "file": "file/to/update/on/toRepo.json",
   "authentication": {
     "type": "token",
     "token": "token-value"
-  }
+  },
+  "fromRepo": "fetch issues from repo",
+  "fromLabels": [],
+  "file": "file/to/update/on/toRepo.json",
+  "owner": "owner",
+  "toRepo": "repo to update"
 }
