@@ -13,6 +13,8 @@ Link: http://example.com
 Keywords: Example
 ```
 
+The updater also support [meetup.com](https://www.meetup.com/meetup_api/docs/2/events/) api.
+
 ## Usage
 
 Copy `config.json.example` to `config.json` and modify the content. Then run
