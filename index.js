@@ -10,7 +10,7 @@ program
 
 // Bail if no config file.
 if (!program.config) {
-  pino.error('Missing config file value');
+  pino.error('Missing config path');
   process.exit(1);
 }
 
