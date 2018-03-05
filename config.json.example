@@ -4,14 +4,14 @@
       "type": "token",
       "token": "token-value"
     },
-    "fromRepo": "fetch-issues-from-repo",
-    "fromLabels": [],
-    "file": "file/to/update/on/toRepo.json",
-    "owner": "owner",
-    "toRepo": "repo-to-update"
+    "fromRepo": "events",
+    "fromLabels": ["approved"],
+    "file": "api/events.json",
+    "owner": "swedishtechevents",
+    "toRepo": "swedishtechevents.com"
   },
   "meetup": {
-    "key": "",
-    "groups": ["group-urlname"]
+    "key": "api-key",
+    "groups": ["sthlm-js"]
   }
 }
