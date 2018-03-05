@@ -4,5 +4,8 @@
   "fromLabels": [],
   "toRepo": "repo to update",
   "file": "file/to/update/on/toRepo.json",
-  "token": "token",
+  "authentication": {
+    "type": "token",
+    "token": "token-value"
+  }
 }

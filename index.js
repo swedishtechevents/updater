@@ -21,10 +21,7 @@ const updateFile = require('./updater');
 const filterEvents = require('./events');
 
 // Authenticate against GitHub api.
-octokit.authenticate({
-  type: 'token',
-  token: config.token
-});
+octokit.authenticate(config.authentication);
 
 // Fetch issues.
 octokit.issues.getForRepo({
