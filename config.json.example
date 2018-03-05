@@ -1,0 +1,7 @@
+{
+  "owner": "owner",
+  "fromRepo": "fetch issues from repo",
+  "toRepo": "repo to update",
+  "file": "file/to/update/on/toRepo.json",
+  "token": "token"
+}
