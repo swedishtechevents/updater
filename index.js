@@ -1,5 +1,5 @@
 const program = require('commander');
-const octokit = require('@octokit/rest')({ debug: false });
+const octokit = require('@octokit/rest')();
 const pino = require('pino')();
 
 // Create program.
