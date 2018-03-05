@@ -1,6 +1,9 @@
 const program = require('commander');
 const octokit = require('@octokit/rest')();
 const pino = require('pino')();
+const updater = require('./lib/updater');
+const github = require('./lib/github');
+const meetup = require('./lib/meetup');
 
 // Create program.
 program
@@ -14,37 +17,24 @@ if (!program.config) {
   process.exit(1);
 }
 
-// Custom modules.
+// Load configuration.
 const config = require(program.config);
-const parser = require('./parser');
-const updateFile = require('./updater');
-const filterEvents = require('./events');
 
 // Authenticate against GitHub api.
-octokit.authenticate(config.authentication);
+octokit.authenticate(config.github.authentication);
 
-// Fetch issues.
-octokit.issues.getForRepo({
-  owner: config.owner,
-  repo: config.fromRepo,
-  labels: config.fromLabels || [],
-  per_page: 100
-}).then(res => {
-  pino.info('Found ' + res.data.length + ' issues');
-  pino.info('Updating events');
+(async () => {
+  let events = await github(octokit, config.github);
 
-  // Filter events.
-  let events = res.data
-    .map(parser)
-    .map(event => {
-      return filterEvents(octokit, config, event);
-    });
+  if (!(events instanceof Array)) {
+    events = [];
+  }
 
-  // Remove old events.
-  events = events.filter(e => e !== false);
+  const res = await meetup(config.meetup);
+  if (res instanceof Array) {
+    events = events.concat(res);
+  }
 
-  // Update file with new events.
-  updateFile(octokit, config, events);
-}).catch(err => {
-  pino.error(err.message);
-});
+  // Update events file.
+  updater(octokit, config.github, events);
+})()

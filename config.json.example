@@ -1,11 +1,17 @@
 {
-  "authentication": {
-    "type": "token",
-    "token": "token-value"
+  "github": {
+    "authentication": {
+      "type": "token",
+      "token": "token-value"
+    },
+    "fromRepo": "fetch-issues-from-repo",
+    "fromLabels": [],
+    "file": "file/to/update/on/toRepo.json",
+    "owner": "owner",
+    "toRepo": "repo-to-update"
   },
-  "fromRepo": "fetch-issues-from-repo",
-  "fromLabels": [],
-  "file": "file/to/update/on/toRepo.json",
-  "owner": "owner",
-  "toRepo": "repo-to-update"
+  "meetup": {
+    "key": "",
+    "groups": ["group-urlname"]
+  }
 }
