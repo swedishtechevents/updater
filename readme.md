@@ -6,8 +6,8 @@ Example:
 
 ```
 Title: Test event
-City: Stockholm
 Description: The best event
+City: Stockholm
 Date: 2018-01-01 19:00:00
 Link: http://example.com
 Keywords: Example
