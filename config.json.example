@@ -12,6 +12,6 @@
   },
   "meetup": {
     "key": "api-key",
-    "groups": ["sthlm-js"]
+    "exclude": ["urlname-of-group"]
   }
 }
