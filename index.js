@@ -35,6 +35,10 @@ octokit.authenticate(config.github.authentication);
     events = events.concat(res);
   }
 
+  events = events.sort((a, b) => {
+    return a.date - b.date;
+  });
+
   // Update events file.
   updater(octokit, config.github, events);
 })()
