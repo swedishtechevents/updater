@@ -10,7 +10,6 @@ Description: The best event
 City: Stockholm
 Date: 2018-01-01 19:00:00
 Link: http://example.com
-Keywords: Example
 ```
 
 The updater also support [meetup.com](https://www.meetup.com/meetup_api/docs/2/events/) api.
