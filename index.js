@@ -30,7 +30,7 @@ octokit.authenticate(config.github.authentication);
     events = [];
   }
 
-  let groups = await meetup.findGroups(config.meetup, 34, 'sweden');
+  let groups = await meetup.findGroups(config.meetup, 34, 'SE');
 
   if (typeof groups !== 'object') {
     groups = {};
