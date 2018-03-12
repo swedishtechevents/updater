@@ -30,13 +30,7 @@ octokit.authenticate(config.github.authentication);
     events = [];
   }
 
-  let groups = await meetup.findGroups(config.meetup, 34, 'SE');
-
-  if (typeof groups !== 'object') {
-    groups = {};
-  }
-
-  const res = await meetup.getEvents(config.meetup, groups);
+  const res = await meetup.getEvents(config.meetup, 'SE');
   if (res instanceof Array) {
     events = events.concat(res);
   }
@@ -46,5 +40,5 @@ octokit.authenticate(config.github.authentication);
   });
 
   // Update events file.
-  updater(octokit, config.github, events);
+  // updater(octokit, config.github, events);
 })()
