@@ -12,7 +12,6 @@
   },
   "meetup": {
     "key": "api-key",
-    "exclude": ["urlname-of-group"],
-    "text_format": "html or plain, default html"
+    "exclude": ["urlname-of-group"]
   }
 }
