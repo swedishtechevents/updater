@@ -30,7 +30,7 @@ octokit.authenticate(config.github.authentication);
     events = [];
   }
 
-  const res = await meetup.getEvents(config.meetup, 34, 'SE');
+  const res = await meetup.getEvents(config.meetup);
   if (res instanceof Array) {
     events = events.concat(res);
   }

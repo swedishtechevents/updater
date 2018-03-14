@@ -12,6 +12,8 @@
   },
   "meetup": {
     "key": "api-key",
-    "exclude": ["urlname-of-group"]
+    "exclude": ["urlname-of-group"],
+    "country": "SE",
+    "category": 34
   }
 }
