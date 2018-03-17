@@ -41,8 +41,27 @@ octokit.authenticate(config.github.authentication);
     events = events.concat(eventsEventbrite);
   }
 
+  // Sort events by date.
   events = events.sort((a, b) => {
     return a.date - b.date;
+  });
+
+  // Remove undefined events.
+  events = events.filter(event => {
+    return typeof event === 'object';
+  });
+
+  // Limit events description length to 280.
+  events = events.map(event => {
+    let description = (event.description || '').substring(0, 280);
+
+    if ((event.description || '').length > 280) {
+      description += '...';
+    }
+
+    event.description = description.trim();
+
+    return event;
   });
 
   // Update events file.
