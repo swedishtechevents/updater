@@ -11,9 +11,15 @@
     "toRepo": "swedishtechevents.com"
   },
   "meetup": {
-    "key": "api-key",
+    "token": "api-key",
     "exclude": ["urlname-of-group"],
     "country": "SE",
     "category": 34
+  },
+  "eventbrite": {
+    "token": "",
+    "category": 102,
+    "country": "Sweden",
+    "timezone": "Europe/Stockholm"
   }
 }
