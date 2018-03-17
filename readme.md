@@ -12,7 +12,10 @@ Date: 2018-01-01 19:00:00
 Link: http://example.com
 ```
 
-The updater also support [meetup.com](https://www.meetup.com/meetup_api/docs/2/events/) api.
+The updater also support:
+
+- [meetup.com](https://www.meetup.com/meetup_api/)
+- [eventbrite.com](https://www.eventbrite.com/developer/)
 
 ## Usage
 
