@@ -5,6 +5,7 @@ const updater = require('./lib/updater');
 const github = require('./lib/github');
 const meetup = require('./lib/meetup');
 const eventbrite = require('./lib/eventbrite');
+const twitter = require('./lib/twitter');
 
 // Create program.
 program
@@ -66,4 +67,7 @@ octokit.authenticate(config.github.authentication);
 
   // Update events file.
   updater(octokit, config.github, events);
+
+  // Tweet events.
+  twitter.tweet(config.twitter, events);
 })();
