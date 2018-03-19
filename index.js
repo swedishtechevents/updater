@@ -5,6 +5,7 @@ const updater = require('./lib/updater');
 const github = require('./lib/github');
 const meetup = require('./lib/meetup');
 const eventbrite = require('./lib/eventbrite');
+const rss = require('./lib/rss');
 
 // Create program.
 program
@@ -65,5 +66,8 @@ octokit.authenticate(config.github.authentication);
   });
 
   // Update events file.
-  updater(octokit, config.github, events);
+  updater(octokit, config.github, config.github.files.events, events);
+
+  // Update rss file.
+  updater(octokit, config.github, config.github.files.rss, rss(events));
 })();
