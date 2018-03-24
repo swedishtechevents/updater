@@ -21,5 +21,16 @@
     "category": 102,
     "country": "Sweden",
     "timezone": "Europe/Stockholm"
+  },
+  "twitter": {
+    "consumer_key": "",
+    "consumer_secret": "",
+    "access_token_key": "",
+    "access_token_secret": "",
+    "hashtag": "",
+    "redis": "",
+    "cities": {
+      "stockholm": "#sthlmtech"
+    }
   }
 }
