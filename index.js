@@ -11,6 +11,7 @@ const twitter = require('./lib/twitter');
 program
   .version('1.0.0')
   .option('-c, --config [config]', 'Config file', './config.json')
+  .option('-t, --twitter', 'Enable Twitter')
   .parse(process.argv);
 
 // Bail if no config file.
@@ -69,5 +70,7 @@ octokit.authenticate(config.github.authentication);
   updater(octokit, config.github, events);
 
   // Tweet events.
-  twitter.tweet(config.twitter, events);
+  if (program.twitter) {
+    twitter.tweet(config.twitter, events);
+  }
 })();
