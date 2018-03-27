@@ -12,6 +12,9 @@ const { fixEventsData, uniqEvents } = require('./lib/events');
 program
   .version('1.0.0')
   .option('-c, --config [config]', 'Config file', './config.json')
+  .option('-e, --eventbrite', 'Enable Eventbrite')
+  .option('-m, --meetup', 'Enable Meetup')
+  .option('-u, --update', 'Enable update of api')
   .option('-t, --twitter', 'Enable Twitter')
   .parse(process.argv);
 
@@ -34,14 +37,20 @@ octokit.authenticate(config.github.authentication);
     events = [];
   }
 
-  const eventsMeetup = await meetup(config.meetup);
-  if (eventsMeetup instanceof Array) {
-    events = events.concat(eventsMeetup);
+  // Fetch meetup events.
+  if (program.meetup) {
+    const eventsMeetup = await meetup(config.meetup);
+    if (eventsMeetup instanceof Array) {
+      events = events.concat(eventsMeetup);
+    }
   }
 
-  const eventsEventbrite = await eventbrite(config.eventbrite);
-  if (eventsEventbrite instanceof Array) {
-    events = events.concat(eventsEventbrite);
+  // Fetch eventbrite events.
+  if (program.eventbrite) {
+    const eventsEventbrite = await eventbrite(config.eventbrite);
+    if (eventsEventbrite instanceof Array) {
+      events = events.concat(eventsEventbrite);
+    }
   }
 
   // Sort events by date.
@@ -71,7 +80,9 @@ octokit.authenticate(config.github.authentication);
   events = fixEventsData(events);
 
   // Update events file.
-  updater(octokit, config.github, events);
+  if (program.update) {
+    updater(octokit, config.github, events);
+  }
 
   // Tweet events.
   if (program.twitter) {
