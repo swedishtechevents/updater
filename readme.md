@@ -42,6 +42,8 @@ docker run --name updater-redis -d redis redis-server --appendonly yes
 docker run --rm --link updater-redis:redis updater --twitter
 ```
 
+Redis url `redis://redis:6379`
+
 ## License
 
 MIT © [Fredrik Forsmo](https://github.com/frozzare)
