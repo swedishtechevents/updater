@@ -6,6 +6,7 @@ const github = require('./lib/github');
 const meetup = require('./lib/meetup');
 const eventbrite = require('./lib/eventbrite');
 const twitter = require('./lib/twitter');
+const { uniqEvents } = require('./lib/events');
 
 // Create program.
 program
@@ -65,6 +66,8 @@ octokit.authenticate(config.github.authentication);
 
     return event;
   });
+
+  events = uniqEvents(events);
 
   // Update events file.
   updater(octokit, config.github, events);
