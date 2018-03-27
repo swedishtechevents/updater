@@ -34,6 +34,14 @@ Example output:
 {"level":30,"time":1520275237592,"msg":"Created file api/events.json","pid":45300,"hostname":"hostname.lan","v":1}
 ```
 
+## Docker
+
+```
+docker build . -t updater
+docker run --name updater-redis -d redis redis-server --appendonly yes
+docker run --rm --link updater-redis:redis updater --twitter
+```
+
 ## License
 
 MIT © [Fredrik Forsmo](https://github.com/frozzare)
