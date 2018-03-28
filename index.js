@@ -86,6 +86,6 @@ octokit.authenticate(config.github.authentication);
 
   // Tweet events.
   if (program.twitter) {
-    twitter.tweet(config.twitter, events.slice(0,5));
+    twitter.tweet(config.twitter, events);
   }
 })();
