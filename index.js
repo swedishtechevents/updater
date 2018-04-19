@@ -6,6 +6,7 @@ const github = require('./lib/github');
 const meetup = require('./lib/meetup');
 const eventbrite = require('./lib/eventbrite');
 const twitter = require('./lib/twitter');
+const ical = require('./lib/ical');
 const { fixEventsData, uniqEvents } = require('./lib/events');
 
 // Create program.
@@ -16,6 +17,7 @@ program
   .option('-m, --meetup', 'Enable Meetup')
   .option('-u, --update', 'Enable update of api')
   .option('-t, --twitter', 'Enable Twitter')
+  .option('-i, --ical', 'Enable ical')
   .parse(process.argv);
 
 // Bail if no config file.
@@ -31,7 +33,7 @@ const config = require(program.config);
 octokit.authenticate(config.github.authentication);
 
 (async () => {
-  let events = await github(octokit, config.github);
+  let events = []; // await github(octokit, config.github);
 
   if (!(events instanceof Array)) {
     events = [];
@@ -87,5 +89,9 @@ octokit.authenticate(config.github.authentication);
   // Tweet events.
   if (program.twitter) {
     twitter.tweet(config.twitter, events);
+  }
+
+  if (program.ical) {
+    require('fs').writeFileSync('test.ical', ical(events));
   }
 })();
