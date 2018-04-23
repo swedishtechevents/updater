@@ -83,7 +83,7 @@ octokit.authenticate(config.github.authentication);
 
   // Update events file.
   if (program.update) {
-    updater(octokit, config.github, events);
+    updater(octokit, config.github, config.github.files.events, events);
   }
 
   // Tweet events.
@@ -91,7 +91,8 @@ octokit.authenticate(config.github.authentication);
     twitter.tweet(config.twitter, events);
   }
 
+  // Update ical file.
   if (program.ical) {
-    require('fs').writeFileSync('test.ical', ical(events));
+    updater(octokit, config.github, config.github.files.ical, ical(events));
   }
 })();
