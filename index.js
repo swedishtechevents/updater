@@ -33,7 +33,7 @@ const config = require(program.config);
 octokit.authenticate(config.github.authentication);
 
 (async () => {
-  let events = []; // await github(octokit, config.github);
+  let events = await github(octokit, config.github);
 
   if (!(events instanceof Array)) {
     events = [];
