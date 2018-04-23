@@ -7,6 +7,7 @@
   "dependencies": {
     "@octokit/rest": "^14.0.9",
     "commander": "^2.14.1",
+    "ical-generator": "^0.2.10",
     "js-base64": "^2.4.3",
     "meetup-api": "^1.4.31",
     "node-eventbrite": "0.0.19",
