@@ -11,10 +11,16 @@
     "toRepo": "swedishtechevents.com"
   },
   "meetup": {
-    "token": "api-key",
     "exclude": ["urlname-of-group"],
     "country": "SE",
-    "category": 34
+    "category": 102,
+    "oauth": {
+      "key: "",
+      "secret": ""
+    },
+    "cities": [ // Lat/Lon array of cities
+      [59.334591, 18.063240] // Stockholm
+    ]
   },
   "eventbrite": {
     "token": "",
