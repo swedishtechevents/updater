@@ -13,7 +13,7 @@
   "meetup": {
     "exclude": ["urlname-of-group"],
     "country": "SE",
-    "category": 102,
+    "category": 292,
     "oauth": {
       "key: "",
       "secret": ""
