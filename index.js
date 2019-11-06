@@ -85,17 +85,17 @@ octokit.authenticate(config.github.authentication);
 
   // Update events file.
   if (program.update) {
-    updater(octokit, config.github, config.github.files.events, events);
+    await updater(octokit, config.github, config.github.files.events, events);
   }
 
   // Update ical file.
   if (program.ical) {
-    updater(octokit, config.github, config.github.files.ical, ical(events));
+    await updater(octokit, config.github, config.github.files.ical, ical(events));
   }
 
   // Update rss file.
   if (program.rss) {
-    updater(octokit, config.github, config.github.files.rss, rss(events));
+    await updater(octokit, config.github, config.github.files.rss, rss(events));
   }
 
   // Tweet events.
