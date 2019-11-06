@@ -6,11 +6,20 @@ const github = require('./lib/github');
 const meetup = require('./lib/meetup');
 const eventbrite = require('./lib/eventbrite');
 const rss = require('./lib/rss');
+const twitter = require('./lib/twitter');
+const ical = require('./lib/ical');
+const { fixEventsData, uniqEvents } = require('./lib/events');
 
 // Create program.
 program
   .version('1.0.0')
   .option('-c, --config [config]', 'Config file', './config.json')
+  .option('-e, --eventbrite', 'Enable Eventbrite')
+  .option('-m, --meetup', 'Enable Meetup')
+  .option('-u, --update', 'Enable update of api')
+  .option('-t, --twitter', 'Enable Twitter')
+  .option('-i, --ical', 'Enable ical')
+  .option('-r, --rss', 'Enable rss')
   .parse(process.argv);
 
 // Bail if no config file.
@@ -32,14 +41,20 @@ octokit.authenticate(config.github.authentication);
     events = [];
   }
 
-  const eventsMeetup = await meetup(config.meetup);
-  if (eventsMeetup instanceof Array) {
-    events = events.concat(eventsMeetup);
+  // Fetch meetup events.
+  if (program.meetup) {
+    const eventsMeetup = await meetup(config.meetup);
+    if (eventsMeetup instanceof Array) {
+      events = events.concat(eventsMeetup);
+    }
   }
 
-  const eventsEventbrite = await eventbrite(config.eventbrite);
-  if (eventsEventbrite instanceof Array) {
-    events = events.concat(eventsEventbrite);
+  // Fetch eventbrite events.
+  if (program.eventbrite) {
+    const eventsEventbrite = await eventbrite(config.eventbrite);
+    if (eventsEventbrite instanceof Array) {
+      events = events.concat(eventsEventbrite);
+    }
   }
 
   // Sort events by date.
@@ -65,9 +80,26 @@ octokit.authenticate(config.github.authentication);
     return event;
   });
 
+  events = uniqEvents(events);
+  events = fixEventsData(events);
+
   // Update events file.
-  updater(octokit, config.github, config.github.files.events, events);
+  if (program.update) {
+    updater(octokit, config.github, config.github.files.events, events);
+  }
+
+  // Update ical file.
+  if (program.ical) {
+    updater(octokit, config.github, config.github.files.ical, ical(events));
+  }
 
   // Update rss file.
-  updater(octokit, config.github, config.github.files.rss, rss(events));
+  if (program.rss) {
+    updater(octokit, config.github, config.github.files.rss, rss(events));
+  }
+
+  // Tweet events.
+  if (program.twitter) {
+    twitter.tweet(config.twitter, events);
+  }
 })();

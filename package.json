@@ -6,13 +6,16 @@
   },
   "dependencies": {
     "@octokit/rest": "^14.0.9",
-    "commander": "^2.14.1",
-    "js-base64": "^2.4.3",
-    "meetup-api": "^1.4.31",
+    "commander": "^2.20.3",
+    "ical-generator": "^0.2.10",
+    "js-base64": "^2.5.1",
     "node-eventbrite": "0.0.19",
-    "node-fetch": "^2.1.1",
-    "pino": "^4.13.0",
+    "pino": "^4.17.6",
+    "redis": "^2.8.0",
+    "request": "^2.88.0",
     "rss": "^1.2.2",
-    "semistandard": "^12.0.1"
+    "semistandard": "^14.2.0",
+    "string-strip-html": "^4.3.6",
+    "twitter": "^1.7.1"
   }
 }

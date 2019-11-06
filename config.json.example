@@ -14,15 +14,32 @@
     }
   },
   "meetup": {
-    "token": "api-key",
     "exclude": ["urlname-of-group"],
     "country": "SE",
-    "category": 34
+    "category": 292,
+    "oauth": {
+      "key: "",
+      "secret": ""
+    },
+    "cities": [ // Lat/Lon array of cities
+      [59.334591, 18.063240] // Stockholm
+    ]
   },
   "eventbrite": {
     "token": "",
     "category": 102,
     "country": "Sweden",
     "timezone": "Europe/Stockholm"
+  },
+  "twitter": {
+    "consumer_key": "",
+    "consumer_secret": "",
+    "access_token_key": "",
+    "access_token_secret": "",
+    "hashtag": "",
+    "redis": "",
+    "cities": {
+      "stockholm": "#sthlmtech"
+    }
   }
 }

@@ -19,7 +19,18 @@ The updater also support:
 
 ## Usage
 
-Copy `config.json.example` to `config.json` and modify the content. Then run
+Copy `config.json.example` to `config.json` and modify the content. Rember to create an app and authenticating with [meetup.com](https://www.meetup.com/meetup_api/auth/). Then create a file `meetup.json` in the root that contains this:
+
+```json
+{
+  "access_token": "XXX",
+  "refresh_token": "XXX",
+  "token_type": "bearer",
+  "expires_in": 3600
+}
+```
+
+Then you can run:
 
 ```
 node index.js
@@ -29,10 +40,20 @@ and it will fetch issues from a repository, parse the content and update the fil
 
 Example output:
 
-```
+```json
 {"level":30,"time":1520275235349,"msg":"Updating events","pid":45300,"hostname":"hostname.lan","v":1}
 {"level":30,"time":1520275237592,"msg":"Created file api/events.json","pid":45300,"hostname":"hostname.lan","v":1}
 ```
+
+## Docker
+
+```
+docker build . -t updater
+docker run --name updater-redis -d redis redis-server --appendonly yes
+docker run --rm --link updater-redis:redis updater --twitter
+```
+
+Redis url `redis://redis:6379`
 
 ## License
 
