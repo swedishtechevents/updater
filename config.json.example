@@ -6,9 +6,12 @@
     },
     "fromRepo": "events",
     "fromLabels": ["approved"],
-    "file": "api/events.json",
     "owner": "swedishtechevents",
-    "toRepo": "swedishtechevents.com"
+    "toRepo": "swedishtechevents.com",
+    "files": {
+      "events": "api/events.json"
+      "rss": "rss.xml"
+    }
   },
   "meetup": {
     "exclude": ["urlname-of-group"],
