@@ -5,6 +5,7 @@ const updater = require('./lib/updater');
 const github = require('./lib/github');
 const meetup = require('./lib/meetup');
 const eventbrite = require('./lib/eventbrite');
+const rss = require('./lib/rss');
 const twitter = require('./lib/twitter');
 const ical = require('./lib/ical');
 const { fixEventsData, uniqEvents } = require('./lib/events');
@@ -18,6 +19,7 @@ program
   .option('-u, --update', 'Enable update of api')
   .option('-t, --twitter', 'Enable Twitter')
   .option('-i, --ical', 'Enable ical')
+  .option('-r, --rss', 'Enable rss')
   .parse(process.argv);
 
 // Bail if no config file.
@@ -83,16 +85,21 @@ octokit.authenticate(config.github.authentication);
 
   // Update events file.
   if (program.update) {
-    updater(octokit, config.github, config.github.files.events, events);
+    await updater(octokit, config.github, config.github.files.events, events);
+  }
+
+  // Update ical file.
+  if (program.ical) {
+    await updater(octokit, config.github, config.github.files.ical, ical(events));
+  }
+
+  // Update rss file.
+  if (program.rss) {
+    await updater(octokit, config.github, config.github.files.rss, rss(events));
   }
 
   // Tweet events.
   if (program.twitter) {
     twitter.tweet(config.twitter, events);
-  }
-
-  // Update ical file.
-  if (program.ical) {
-    updater(octokit, config.github, config.github.files.ical, ical(events));
   }
 })();
