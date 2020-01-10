@@ -55,8 +55,6 @@ octokit.authenticate(config.github.authentication);
     if (eventsEventbrite instanceof Array) {
       events = events.concat(eventsEventbrite);
     }
-    console.log(events, events.length);
-    return;
   }
 
   // Sort events by date.
