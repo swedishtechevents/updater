@@ -4,7 +4,7 @@ const pino = require('pino')();
 const updater = require('./lib/updater');
 const github = require('./lib/github');
 const meetup = require('./lib/meetup');
-const eventbrite = require('./lib/eventbrite');
+const eventbrite = require('./lib/eventbrite-html');
 const rss = require('./lib/rss');
 const twitter = require('./lib/twitter');
 const ical = require('./lib/ical');
@@ -55,6 +55,8 @@ octokit.authenticate(config.github.authentication);
     if (eventsEventbrite instanceof Array) {
       events = events.concat(eventsEventbrite);
     }
+    console.log(events, events.length);
+    return;
   }
 
   // Sort events by date.

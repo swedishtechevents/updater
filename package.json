@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "@octokit/rest": "^14.0.9",
+    "cheerio": "^1.0.0-rc.3",
     "commander": "^2.20.3",
+    "got": "^10.2.1",
     "ical-generator": "^0.2.10",
     "js-base64": "^2.5.1",
     "node-eventbrite": "0.0.19",

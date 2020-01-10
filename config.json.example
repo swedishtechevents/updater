@@ -26,10 +26,14 @@
     ]
   },
   "eventbrite": {
+    // For eventbrite.js
     "token": "",
     "category": 102,
     "country": "Sweden",
-    "timezone": "Europe/Stockholm"
+    "timezone": "Europe/Stockholm",
+    // For eventbrite-html.js
+    "url": "https://www.eventbrite.com/d/sweden/science-and-tech--events/",
+    "exclude": ['event-link-without-query-strings']
   },
   "twitter": {
     "consumer_key": "",
