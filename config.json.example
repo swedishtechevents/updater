@@ -22,7 +22,7 @@
       "secret": ""
     },
     "cities": [ // Lat/Lon array of cities
-      [59.334591, 18.063240] // Stockholm
+      [59.334591, 18.063240, "Stockholm"] // All three values are required
     ]
   },
   "eventbrite": {
@@ -45,5 +45,8 @@
     "cities": {
       "stockholm": "#sthlmtech"
     }
+  },
+  "locationiq": {
+    "token": ""
   }
 }

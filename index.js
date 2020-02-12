@@ -8,7 +8,11 @@ const eventbrite = require('./lib/eventbrite-html');
 const rss = require('./lib/rss');
 const twitter = require('./lib/twitter');
 const ical = require('./lib/ical');
+const locationiq = require('./lib/locationiq');
 const { fixEventsData, uniqEvents } = require('./lib/events');
+const cities = require('./data/cities');
+const fs = require('fs');
+const path = require('path');
 
 // Create program.
 program
@@ -82,6 +86,28 @@ octokit.authenticate(config.github.authentication);
 
   events = uniqEvents(events);
   events = fixEventsData(events);
+
+  // Use a better city name for events.
+  const skipCities = config.meetup.cities.map(p => p[2]);
+  const findCity = locationiq(config.locationiq);
+
+  for (let i = 0, l = events.length; i < l; i++) {
+    const event = events[i];
+    let newCity = event.city;
+
+    if (skipCities.indexOf(event.city) === -1) {
+      newCity = await findCity(event.city, cities);
+    }
+
+    if (typeof cities[event.city] !== 'string' && newCity) {
+      cities[event.city] = newCity;
+    }
+
+    event.city = newCity;
+    events[i] = event;
+  }
+
+  fs.writeFileSync(path.join(__dirname, 'data', 'cities.json'), JSON.stringify(cities, null, 2));
 
   // Update events file.
   if (program.update) {
