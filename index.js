@@ -128,12 +128,13 @@ octokit.authenticate(config.github.authentication);
 
   // Update rss file.
   if (program.rss) {
-    await updater(octokit, config.github, config.github.files.rss, rss(events));
+    await updater(octokit, config.github, config.github.files.rss, rss(events, config.github.files.rss));
 
     const citiesArr = Object.values(cities).filter((value, index, self) => self.indexOf(value) === index);
     for (let i = 0, l = citiesArr.length; i < l; i++) {
       const city = citiesArr[i];
-      await updater(octokit, config.github, `feeds/${slug(city.toLowerCase())}.xml`, rss(events.filter(e => e.city.toLowerCase() === city)));
+      const cityFile = `feeds/${slug(city.toLowerCase())}.xml`;
+      await updater(octokit, config.github, cityFile, rss(events.filter(e => e.city.toLowerCase() === city)), cityFile, city);
     }
   }
 
