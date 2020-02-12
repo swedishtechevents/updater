@@ -121,6 +121,12 @@ octokit.authenticate(config.github.authentication);
   // Update rss file.
   if (program.rss) {
     await updater(octokit, config.github, config.github.files.rss, rss(events));
+
+    const citiesArr = Object.values(cities);
+    for (let i = 0, l = citiesArr.length; i < l; i++) {
+      const city = citiesArr[i];
+      await updater(octokit, config.github, `feeds/${city.toLowerCase()}.xml`, rss(events.filter(e => e.city.toLowerCase() === city)));
+    }
   }
 
   // Tweet events.
