@@ -134,7 +134,7 @@ octokit.authenticate(config.github.authentication);
     for (let i = 0, l = citiesArr.length; i < l; i++) {
       const city = citiesArr[i];
       const cityFile = `feeds/${slug(city.toLowerCase())}.xml`;
-      await updater(octokit, config.github, cityFile, rss(events.filter(e => e.city.toLowerCase() === city.toLowerCase())), cityFile, city);
+      await updater(octokit, config.github, cityFile, rss(events.filter(e => e.city.toLowerCase() === city.toLowerCase()), cityFile, city));
     }
   }
 
