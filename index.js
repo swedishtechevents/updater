@@ -13,6 +13,14 @@ const { fixEventsData, uniqEvents } = require('./lib/events');
 const cities = require('./data/cities');
 const fs = require('fs');
 const path = require('path');
+const slugify = require('slugify');
+
+const slug = s => {
+  s = s.replace(/[*+~.()'"!:@_]/g, '-');
+  return slugify(s, {
+    lower: true
+  });
+};
 
 // Create program.
 program
@@ -123,9 +131,16 @@ octokit.authenticate(config.github.authentication);
     await updater(octokit, config.github, config.github.files.rss, rss(events));
 
     const citiesArr = Object.values(cities);
+    const updatedRSS = {};
     for (let i = 0, l = citiesArr.length; i < l; i++) {
       const city = citiesArr[i];
-      await updater(octokit, config.github, `feeds/${city.toLowerCase()}.xml`, rss(events.filter(e => e.city.toLowerCase() === city)));
+      if (updatedRSS[city]) {
+        continue;
+      }
+
+      await updater(octokit, config.github, `feeds/${slug(city.toLowerCase())}.xml`, rss(events.filter(e => e.city.toLowerCase() === city)));
+
+      updatedRSS[city] = true;
     }
   }
 
