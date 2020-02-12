@@ -103,8 +103,7 @@ octokit.authenticate(config.github.authentication);
       cities[event.city] = newCity;
     }
 
-    event.city = newCity;
-    events[i] = event;
+    events[i].city = newCity;
   }
 
   fs.writeFileSync(path.join(__dirname, 'data', 'cities.json'), JSON.stringify(cities, null, 2));
