@@ -1,4 +1,5 @@
 /*.json
+/*.xml
 node_modules
 oauth2.js
 /test.js
