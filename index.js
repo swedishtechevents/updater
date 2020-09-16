@@ -1,7 +1,7 @@
 const program = require('commander');
 const octokit = require('@octokit/rest')();
 const pino = require('pino')();
-const updater = require('./lib/updater');
+const { updater, deleter } = require('./lib/updater');
 const github = require('./lib/github');
 const meetup = require('./lib/meetup');
 const eventbrite = require('./lib/eventbrite-html');
@@ -134,7 +134,12 @@ octokit.authenticate(config.github.authentication);
     for (let i = 0, l = citiesArr.length; i < l; i++) {
       const city = citiesArr[i];
       const cityFile = `feeds/${slug(city.toLowerCase())}.xml`;
-      await updater(octokit, config.github, cityFile, rss(events.filter(e => e.city.toLowerCase() === city.toLowerCase()), cityFile, city));
+      const cityEvents = events.filter(e => e.city.toLowerCase() === city.toLowerCase());
+      if (cityEvents.length) {
+        await updater(octokit, config.github, cityFile, rss(cityEvents, cityFile, city));
+      } else {
+        await deleter(octokit, config.github, cityFile);
+      }
     }
   }
 
