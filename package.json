@@ -13,7 +13,7 @@
     "js-base64": "^2.6.4",
     "node-eventbrite": "0.0.19",
     "pino": "^4.17.6",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "request": "^2.88.2",
     "rss": "^1.2.2",
     "semistandard": "^14.2.3",
