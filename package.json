@@ -8,7 +8,7 @@
     "@octokit/rest": "^14.0.9",
     "cheerio": "^1.0.0-rc.12",
     "commander": "^2.20.3",
-    "got": "^10.7.0",
+    "got": "^12.5.3",
     "ical-generator": "^0.2.10",
     "js-base64": "^2.6.4",
     "node-eventbrite": "0.0.19",
